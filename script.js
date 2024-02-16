@@ -45,3 +45,6 @@ let creaTabella = (dati) => {
 };
 
 fetchApi();
+
+let selection = document.getElementById("Select").value;
+console.log(selection)
