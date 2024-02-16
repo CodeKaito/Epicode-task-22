@@ -4,7 +4,6 @@ let inputSearch = document.getElementById('inputSearch');
 let buttonSearch = document.getElementById('buttonSearch');
 
 let selectElement = document.getElementById("Select");
-let selection = selectElement.value;
 
 let fetchApi = async() => {
     try {
@@ -14,13 +13,39 @@ let fetchApi = async() => {
           throw new Error(`Errore di rete: ${risposta.status}`);
         }
     
-        const datiJson = await risposta.json();
+        const data = await risposta.json();
         // console.log('Dati ricevuti:', datiJson);
-        creaTabella(datiJson);
-        
+        creaTabella(data);
+        filteredData(data);
+
       } catch (error) {
         console.error('Si è verificato un errore durante la richiesta:', error.message);
       }
+};
+
+let filteredData = (data) => {
+  inputSearch.addEventListener("keydown", () => {
+    inputValue = inputSearch.value;
+    let selection = selectElement.value.toLowerCase(); // Converte la selezione in minuscolo per evitare problemi di case-sensitive
+    console.log(selection);
+
+    switch (selection) {
+      case "name":
+        const nomiArray = data.map(oggetto => oggetto.name);
+        console.log(nomiArray);
+        break;
+      case "username":
+        const usernameArray = data.map(oggetto => oggetto.username);
+        console.log(usernameArray);
+        break;
+      case "email":
+        const emailArray = data.map(oggetto => oggetto.email);
+        console.log(emailArray);
+        break;
+      default:
+        console.error("Selezione non gestita");
+    }
+  });
 };
 
 // Funzione per creare la tabella
