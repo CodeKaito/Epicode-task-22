@@ -1,5 +1,3 @@
-
-
 let fetchApi = async() => {
     try {
         const risposta = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -34,3 +32,6 @@ let creaTabella = (dati) => {
   };
 
 fetchApi();
+
+let selection = document.getElementById("Select").value;
+console.log(selection)
