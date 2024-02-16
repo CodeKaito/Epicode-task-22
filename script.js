@@ -2,7 +2,7 @@ let inputSearch = document.getElementById('inputSearch');
 let selectElement = document.getElementById("Select");
 let tabellaDati = document.getElementById('tabellaDati');
 
-let originalData; // Conserva l'array originale per il ripristino
+let originalData; // Conservo l'array originale per ritorpare lo stato iniziale
 
 let fetchApi = async () => {
   try {
