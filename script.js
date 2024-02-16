@@ -3,29 +3,24 @@ let inputSearch = document.getElementById('inputSearch');
 
 let buttonSearch = document.getElementById('buttonSearch');
 
+let selectElement = document.getElementById("Select");
+let selection = selectElement.value;
+
 let fetchApi = async() => {
     try {
         const risposta = await fetch('https://jsonplaceholder.typicode.com/users');
     
-        // Controlla se la risposta ha successo (status 200-299)
         if (!risposta.ok) {
           throw new Error(`Errore di rete: ${risposta.status}`);
         }
     
         const datiJson = await risposta.json();
-        console.log('Dati ricevuti:', datiJson);
-        filteredElements();
+        // console.log('Dati ricevuti:', datiJson);
         creaTabella(datiJson);
-      } catch (errore) {
-        console.error('Si è verificato un errore durante la richiesta:', errore.message);
+        
+      } catch (error) {
+        console.error('Si è verificato un errore durante la richiesta:', error.message);
       }
-};
-
-let filteredElements = () => {
-  buttonSearch.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log(inputSearch.value);
-  });
 };
 
 // Funzione per creare la tabella
@@ -45,6 +40,3 @@ let creaTabella = (dati) => {
 };
 
 fetchApi();
-
-let selection = document.getElementById("Select").value;
-console.log(selection)
